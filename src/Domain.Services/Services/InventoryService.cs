@@ -25,13 +25,13 @@ namespace Domain.Services.Services
                 {
                     quantityToAllocate -= available;
                     sku.Allocate(available);
-                    allocatedItems.Add(new AllocatedItem(sku.Id, available));
+                    allocatedItems.Add(new AllocatedItem(productId, sku.Id, available));
                 }
                 else
                 {
                     sku.Allocate(quantityToAllocate);
                     quantityToAllocate = 0;
-                    allocatedItems.Add(new AllocatedItem(sku.Id, quantityToAllocate));
+                    allocatedItems.Add(new AllocatedItem(productId, sku.Id, quantityToAllocate));
                     break;
                 }
             }

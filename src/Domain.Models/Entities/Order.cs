@@ -19,8 +19,18 @@ namespace Domain.Models.Entities
 
         public void AddStockAllocations(IEnumerable<AllocatedItem> allocatedItems)
         {
-            var stockAllocations = allocatedItems.Select(i => new StockAllocation(Id, i.SkuId, i.AllocatedQuantity));
+            var stockAllocations = allocatedItems.Select(i => new StockAllocation(Id, i.ProductId, i.SkuId, i.AllocatedQuantity));
             _stockAllocations.AddRange(stockAllocations);
+        }
+
+        public void Cancel()
+        {
+            _stockAllocations.Clear();
+        }
+
+        public void Cancel(IEnumerable<int> skuIds)
+        {
+            _stockAllocations.RemoveAll(a => skuIds.Contains(a.SkuId));
         }
     }
 }

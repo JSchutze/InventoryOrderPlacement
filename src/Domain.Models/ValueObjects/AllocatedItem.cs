@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models.ValueObjects
 {
-    public record AllocatedItem(int SkuId, int AllocatedQuantity)
+    public record AllocatedItem(int ProductId, int SkuId, int AllocatedQuantity)
     {
     }
 }

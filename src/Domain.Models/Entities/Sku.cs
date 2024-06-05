@@ -18,5 +18,14 @@
 
             Allocated += quantity;
         }
+
+        public void Deallocate(int quantity)
+        {
+            if (Allocated - quantity < 0)
+                throw new Exception();
+                
+            Allocated -= quantity;
+            Quantity += quantity;
+        }
     }
 }

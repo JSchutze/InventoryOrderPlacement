@@ -14,5 +14,12 @@ namespace Domain.Repositories.Repositories
                 .Where(s => s.ProductId == productId)
                 .ToListAsync();
         }
+
+        public async Task<Dictionary<int, Sku>> GetSkus(IEnumerable<int> ids)
+        {
+            return await _context.Skus
+                .Where(s => ids.Contains(s.Id))
+                .ToDictionaryAsync(s => s.Id);
+        }
     }
 }
