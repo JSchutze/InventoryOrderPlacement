@@ -85,5 +85,19 @@ namespace Domain.Services.Services
 
             // save changes
         }
+
+        public async Task AmendOrder(int orderId, List<LineItem> lineItems)
+        {
+            /* 1. get an order
+             * 2. figure out, which line items were changed, we can use IntersectBy for this purpose
+             * 3. figure out, what is the delta - negative or positive
+             * 4. if positive, it means, more pcs are required, we get SKUs for this position including replacement SKUs and
+             * check, if we have enough in stock. If no and CompleteDeliveryRequired, we call CancelOrder() and stop processing
+             * 5. if CompleteDeliveryRequired is false, then we try to allocate so much, as we can, to achieve needeed quantity
+             * 6. if delta was negative, customer needs less pcs, it is simpler, we just get all allocated skus for the product and
+             * deallocate in a loop, while we deallocated this delta
+             * 7. we save changes
+             */
+        }
     }
 }
